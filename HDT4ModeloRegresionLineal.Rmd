@@ -197,9 +197,14 @@ test<-datos[-trainRowsNumber,]
 fitLM<-lm(y~., data = train)
 summary(fitLM)
 
+
+
+#cor(datos)
+
 predicted<-predict(fitLM,newdata = test)
 
 test$prediccion <- predicted
+
 
 #cfm<-confusionMatrix(test$y,test$prediccion)
 #cfm
@@ -210,12 +215,8 @@ Puede observarse que el valor R cuadrado es 0.459. que es un valor muy bajo, por
 Se utilizarán los datos con una significancia cercana a 0.1 los cuales son: BsmtHalfBath,FullBath, HalfBath. Y los cercanos a 0.5 que son: GarageYrBlt y OpenPorchSF
 
 ```{r, echo = FALSE}
-
-#porciento <- 70/100
-
-#datosCasas$clasificacion <- ifelse(datosCasas$SalePrice <= 251000, "Economicas", ifelse(datosCasas$SalePrice <= 538000, "Intermedias", ifelse(datosCasas$SalePrice <= 755000, "Caras")))
-#datosCasas$y <- as.numeric(factor(datosCasas$clasificacion))
-datos <- datosCasas[,c(2,4,19,20,21,27,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,60,62,67,68,69,70,71,76,77,78,81,83)]
+library(caret)
+datos <- datosCasas[,c(2,19,20,21,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,62,68,69,70,71,76,77,78,83)]
 
 set.seed(123)
 trainRowsNumber<-sample(1:nrow(datos),porciento*nrow(datos))
@@ -226,7 +227,16 @@ test<-datos[-trainRowsNumber,]
 
 fitLM<-lm(y~., data = train)
 summary(fitLM)
-#corrplot(datos)
+
+cor(datos)
+
+#predicted<-predict(fitLM,newdata = test)
+
+#test$prediccion <- predicted
+
+
+#cfm<-confusionMatrix(test$y,test$prediccion)
+#cfm
 
 ```
 
