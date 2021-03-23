@@ -187,57 +187,22 @@ datosCasas$clasificacion <- ifelse(datosCasas$SalePrice <= 251000, "Economicas",
 
 datosCasas$y <- as.numeric(factor(datosCasas$clasificacion))
 datos <- datosCasas[,c(2,4,18,19,20,21,27,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,60,62,63,67,68,69,70,71,72,76,77,78,81,83)]
+datos <- datos[,colSums(is.na(datos))==0]
 
 set.seed(123)
-trainRowsNumber<-sample(1:nrow(datos),porciento*nrow(datos))
+trainRowsNumber<-sample(nrow(datos),porciento*nrow(datos))
 train<-datos[trainRowsNumber,]
 test<-datos[-trainRowsNumber,]
 
 #train$y<- as.numeric(factor(datos$clasificacion))
 
-fitLM<-lm(y~., data = train)
+fitLM<-lm(SalePrice~., data = train)
 summary(fitLM)
-
-
-cor(datos)
-
-predicted<-predict(fitLM,newdata = test)
-
-test$prediccion <- predicted
-
-#cfm<-confusionMatrix(test$y,test$prediccion)
-#cfm
+plot(fitLM)
 
 ```
 
-Puede observarse que el valor R cuadrado es 0.459. que es un valor muy bajo, por lo que se evaluará qué datos son los más significativos y se hará el modelo de nuevo.
-Se utilizarán los datos con una significancia cercana a 0.1 los cuales son: BsmtHalfBath,FullBath, HalfBath. Y los cercanos a 0.5 que son: GarageYrBlt y OpenPorchSF
-
-```{r, echo = FALSE}
-#library(caret)
-#datos <- datosCasas[,c(2,19,20,21,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,62,68,69,70,71,76,77,78,83)]
-
-
-#set.seed(123)
-#trainRowsNumber<-sample(1:nrow(datos),porciento*nrow(datos))
-#train<-datos[trainRowsNumber,]
-#test<-datos[-trainRowsNumber,]
-
-
-#fitLM<-lm(y~., data = train)
-#summary(fitLM)
-
-#cor(datos)
-
-#predicted<-predict(fitLM,newdata = test)
-
-#test$prediccion <- predicted
-
-
-#cfm<-confusionMatrix(test$y,test$prediccion)
-#cfm
-
-```
+Puede observarse que el valor R cuadrado es 0.8068, por lo que se puede decir que el modelo predice un 81% de los precios de las casas, sin embargo, se evaluará la multicolinealidad entre variables para poder mejorar este porcentaje.
 
 ```{r Multicolinealidad, echo = FALSE}
 library(corrplot)
