@@ -206,7 +206,36 @@ Puede observarse que el valor R cuadrado es 0.8068, por lo que se puede decir qu
 
 ```{r Multicolinealidad, echo = FALSE}
 library(corrplot)
-m <- cor(train)
-corrplot(m, method = 'square')
+correlacionMatriz <- cor(train)
+corrplot(correlacionMatriz, method = 'square')
 cor(train)
 ```
+Se hizo un gráfico de correlación para evaluar la multicolinealidad, al igual que una matriz de correlación. Utilizando esta información se determinó que habían varias variables que se relacionaban entre sí y mantenerlas podía aumentar el riesgo de overfitting, en base a eso se utilizó la gráfica para evaluar cuales eran las variables correlacionadas y en base a la matriz se eliminó las variables que tenían menos relación con la variable respuesta.
+
+El resultado fue yearBuilt, bedroomAbvGr, X1stF1SF y X2ndF1rSF
+
+Se planteó un nuevo modelo
+```{r eliminando multicolinealidad, echo = FALSE}
+borrar <- c("YearBuilt","BedroomAbvGr","X1stFlrSF","X2ndFlrSF","OverallQual")
+datos2 <- datos[ , !(names(datos) %in% borrar)]
+datos2 <- datos2[,colSums(is.na(datos2))==0]
+datos2 <- datos2[c(-692,-1183,-1299),]
+datos2 <- datos2[c(-524,-804,-1170),]
+
+
+
+set.seed(123)
+trainRowsNumber<-sample(nrow(datos2),porciento*nrow(datos2))
+train2<-datos2[trainRowsNumber,]
+test2<-datos2[-trainRowsNumber,]
+
+#train$y<- as.numeric(factor(datos$clasificacion))
+
+modeloRLM<-lm(train2$SalePrice~., train2)
+summary(modeloRLM)
+plot(modeloRLM)
+predMLM<-predict(modeloRLM,newdata = test2)
+mean(test2$SalePrice-predMLM)
+
+```
+El valor de R cuadrado aumentó, además se noto que la media era un valor grande, esto se debe probablemente a la gran cantidad de datos atipicos que se evidencian en el gráfico de residuos
