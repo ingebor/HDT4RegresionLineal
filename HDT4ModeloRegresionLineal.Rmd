@@ -11,8 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 #Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT4RegresionLineal
 #C:/Users/Andree/Documents/GitHub/HDT3-ArbolesDeDecision
 
+#"C:/Users/andre/OneDrive/Documentos/HDT4RegresionLineal"
 
-knitr::opts_knit$set(root.dir="C:/Users/Ingebor Rubio/Desktop/Trabajos/Quinto Semestre/Mineria/HDT4RegresionLineal")
+knitr::opts_knit$set(root.dir="C:/Users/andre/OneDrive/Documentos/HDT4RegresionLineal")
 
 ```
 
@@ -198,13 +199,11 @@ fitLM<-lm(y~., data = train)
 summary(fitLM)
 
 
-
-#cor(datos)
+cor(datos)
 
 predicted<-predict(fitLM,newdata = test)
 
 test$prediccion <- predicted
-
 
 #cfm<-confusionMatrix(test$y,test$prediccion)
 #cfm
@@ -215,20 +214,20 @@ Puede observarse que el valor R cuadrado es 0.459. que es un valor muy bajo, por
 Se utilizarán los datos con una significancia cercana a 0.1 los cuales son: BsmtHalfBath,FullBath, HalfBath. Y los cercanos a 0.5 que son: GarageYrBlt y OpenPorchSF
 
 ```{r, echo = FALSE}
-library(caret)
-datos <- datosCasas[,c(2,19,20,21,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,62,68,69,70,71,76,77,78,83)]
+#library(caret)
+#datos <- datosCasas[,c(2,19,20,21,35,37,38,39,44,45,46,47,48,49,50,51,52,53,55,57,62,68,69,70,71,76,77,78,83)]
 
-set.seed(123)
-trainRowsNumber<-sample(1:nrow(datos),porciento*nrow(datos))
-train<-datos[trainRowsNumber,]
-test<-datos[-trainRowsNumber,]
 
-#train$y<- as.numeric(factor(datos$clasificacion))
+#set.seed(123)
+#trainRowsNumber<-sample(1:nrow(datos),porciento*nrow(datos))
+#train<-datos[trainRowsNumber,]
+#test<-datos[-trainRowsNumber,]
 
-fitLM<-lm(y~., data = train)
-summary(fitLM)
 
-cor(datos)
+#fitLM<-lm(y~., data = train)
+#summary(fitLM)
+
+#cor(datos)
 
 #predicted<-predict(fitLM,newdata = test)
 
@@ -240,3 +239,9 @@ cor(datos)
 
 ```
 
+```{r Multicolinealidad, echo = FALSE}
+library(corrplot)
+m <- cor(train)
+corrplot(m, method = 'square')
+cor(train)
+```
