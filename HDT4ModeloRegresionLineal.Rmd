@@ -250,6 +250,9 @@ library(readxl)
 #mean(abs((final$predicteds - final$actuals))/final$actuals)
 
 datosCasas <- read.csv("train.csv")
+datosCasas <- read.csv("train.csv")
+lmHeight = lm(height~SalePrice, data = datosCasas) #Create the linear regression
+summary(lmHeight) #Review the results
 system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
 ```
 
