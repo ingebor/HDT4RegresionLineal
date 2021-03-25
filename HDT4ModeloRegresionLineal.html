@@ -875,7 +875,8 @@ summary {
 <pre><code>## Warning in predict.lm(modeloRLM, newdata = test2): prediction from a rank-
 ## deficient fit may be misleading</code></pre>
 <pre><code>## [1] 50.30789</code></pre>
-<p>El valor de R cuadrado aumentó, además se noto que la media era un valor grande, esto se debe probablemente a la gran cantidad de datos atipicos que se evidencian en el gráfico de residuos</p>
+<p>eliminando multicolinealidad el valor de R cuadrado aumentó a 0.8402, además se noto que la media era un valor grande, esto se debe probablemente a la gran cantidad de datos atipicos que se evidencian en el gráfico de residuos, por lo tanto, se eliminó algunos de los puntos atípicos para disminuir la media a 50.3</p>
+<p>En base al análisis de residuos, se puede notar en el gráfico “residuals vs fitted” que los residuos no siguen un patrón o una tendencia, cumpliendo el supuesto de varianza constante, además en el qq normaltambién se evidencia la normalidad, por último la media es un valor relativamente bajo tomando en cuenta la gran cantidad de datos atípidos (tanto altos como bajos) que mueven la media.</p>
 </div>
 </div>
 
