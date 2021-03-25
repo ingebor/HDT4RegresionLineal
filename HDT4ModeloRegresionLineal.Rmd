@@ -249,6 +249,8 @@ library(readxl)
 #mean(apply(final, 1, min)/apply(final, 1,max))
 #mean(abs((final$predicteds - final$actuals))/final$actuals)
 
+datosCasas <- read.csv("train.csv")
+system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
 ```
 
 
