@@ -876,6 +876,24 @@ summary {
 <pre><code>## [1] 50.30789</code></pre>
 <p>eliminando multicolinealidad el valor de R cuadrado aumentó a 0.8402, además se noto que la media era un valor grande, esto se debe probablemente a la gran cantidad de datos atipicos que se evidencian en el gráfico de residuos, por lo tanto, se eliminó algunos de los puntos atípicos para disminuir la media a 50.3</p>
 <p>En base al análisis de residuos, se puede notar en el gráfico “residuals vs fitted” que los residuos no siguen un patrón o una tendencia, cumpliendo el supuesto de varianza constante, además en el qq normaltambién se evidencia la normalidad, por último la media es un valor relativamente bajo tomando en cuenta la gran cantidad de datos atípidos (tanto altos como bajos) que mueven la media.</p>
+<pre><code>## 
+## Call:
+## lm(formula = YearBuilt ~ SalePrice, data = datosCasas)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -137.730  -12.378    2.988   19.349   53.901 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.935e+03  1.677e+00 1154.09   &lt;2e-16 ***
+## SalePrice   1.988e-04  8.487e-06   23.42   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 25.75 on 1458 degrees of freedom
+## Multiple R-squared:  0.2734, Adjusted R-squared:  0.2729 
+## F-statistic: 548.7 on 1 and 1458 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 

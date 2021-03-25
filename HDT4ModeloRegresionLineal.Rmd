@@ -248,12 +248,9 @@ En base al análisis de residuos, se puede notar en el gráfico "residuals vs fi
 library(readxl)
 #mean(apply(final, 1, min)/apply(final, 1,max))
 #mean(abs((final$predicteds - final$actuals))/final$actuals)
-
-datosCasas <- read.csv("train.csv")
-datosCasas <- read.csv("train.csv")
-lmHeight = lm(height~SalePrice, data = datosCasas) #Create the linear regression
+lmHeight = lm(YearBuilt~SalePrice, data = datosCasas) #Create the linear regression
 summary(lmHeight) #Review the results
-system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
+#system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
 ```
 
 
