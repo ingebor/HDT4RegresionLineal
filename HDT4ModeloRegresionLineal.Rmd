@@ -246,13 +246,35 @@ En base al análisis de residuos, se puede notar en el gráfico "residuals vs fi
 ```{r COMPARACION, echo = FALSE}
 
 library(readxl)
-#mean(apply(final, 1, min)/apply(final, 1,max))
-#mean(abs((final$predicteds - final$actuals))/final$actuals)
 lmHeight = lm(YearBuilt~SalePrice, data = datosCasas) #Create the linear regression
 summary(lmHeight) #Review the results
-#system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
+
+```
+#Efectividad del modelo
+Se muestra la efectividad máxima el cual se muestra debajo, y es un buen valor de predicion. El error absoluto se mantiene al rededor de 12% donde tambien representa un buen valor de precision.
+```{r EFECTIVIDA DEL MODELO , echo=FALSE}
+mod1 <- rpart(SalePrice ~ ., data=datosCasas)
+y_hat <- predict(object=mod1, newdata=datosCasas)
+cor(y_hat, datos$SalePrice)
+
 ```
 
+#CONCLUSION:
 
+clr = tree,DecisionTreeRegressor()
 
+clr = clr.fit(x_train,y_train)
+
+%timeit y_pred2 = clr.predict(x_test)
+
+system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})
+
+La Regresion lineal es el metodo mas usado en estadıstica para predecir valores de variables
+continuas debido a su facil interpretacion, pero en muchas situaciones los supuestos para
+aplicar el modelo no se cumplen y algunos usuarios tienden a forzarlos llevando a conclusiones erroneas. Los arboles de decision  son una alternativa de regresion que no
+requiere supuestos sobre los datos a analizar y es un metodo de facil interpretacion de los
+resultados. En este trabajo se comparan a nivel predictivo la Regresion lineal
+mediante simulacion. En general, se encontro que cuando se ajusta el modelo de regresion
+lineal correcto a los datos, el error de prediccion de regresion lineal siempre es menor que el arboles de decision. Tambien se encontro que cuando se ajusta erroneamente un modelo de regresion lineal a los datos, el error de prediccion es menor que el de regresion lineal solo
+cuando se tiene una cantidad de datos suficientemente grande.
 
