@@ -252,7 +252,10 @@ summary(lmHeight) #Review the results
 ```
 #Efectividad del modelo
 Se muestra la efectividad máxima el cual se muestra debajo, y es un buen valor de predicion. El error absoluto se mantiene al rededor de 12% donde tambien representa un buen valor de precision.
+
+
 ```{r EFECTIVIDA DEL MODELO , echo=FALSE}
+library(rpart)
 mod1 <- rpart(SalePrice ~ ., data=datosCasas)
 y_hat <- predict(object=mod1, newdata=datosCasas)
 cor(y_hat, datos$SalePrice)
