@@ -894,6 +894,14 @@ summary {
 ## Residual standard error: 25.75 on 1458 degrees of freedom
 ## Multiple R-squared:  0.2734, Adjusted R-squared:  0.2729 
 ## F-statistic: 548.7 on 1 and 1458 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>#Efectividad del modelo Se muestra la efectividad máxima el cual se muestra debajo, y es un buen valor de predicion. El error absoluto se mantiene al rededor de 12% donde tambien representa un buen valor de precision.</p>
+<pre><code>## [1] 0.9079814</code></pre>
+<p>#CONCLUSION:</p>
+<p>clr = tree,DecisionTreeRegressor()</p>
+<p>clr = clr.fit(x_train,y_train)</p>
+<p>%timeit y_pred2 = clr.predict(x_test)</p>
+<p>system.time({replicate(10000, predict(linearRegression.lm, newdata=testGroup))})</p>
+<p>La Regresion lineal es el metodo mas usado en estadıstica para predecir valores de variables continuas debido a su facil interpretacion, pero en muchas situaciones los supuestos para aplicar el modelo no se cumplen y algunos usuarios tienden a forzarlos llevando a conclusiones erroneas. Los arboles de decision son una alternativa de regresion que no requiere supuestos sobre los datos a analizar y es un metodo de facil interpretacion de los resultados. En este trabajo se comparan a nivel predictivo la Regresion lineal mediante simulacion. En general, se encontro que cuando se ajusta el modelo de regresion lineal correcto a los datos, el error de prediccion de regresion lineal siempre es menor que el arboles de decision. Tambien se encontro que cuando se ajusta erroneamente un modelo de regresion lineal a los datos, el error de prediccion es menor que el de regresion lineal solo cuando se tiene una cantidad de datos suficientemente grande.</p>
 </div>
 </div>
 
